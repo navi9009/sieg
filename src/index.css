@@ -235,6 +235,7 @@
     --sieg-white: 0 0% 100%;
     --sieg-paper: 60 9% 96%;
     --sieg-success: 142 70% 38%;
+    --hero-overlay: linear-gradient(90deg, hsl(var(--sieg-black) / .88) 0%, hsl(var(--sieg-black) / .48) 52%, hsl(var(--sieg-black) / .12) 100%), linear-gradient(0deg, hsl(var(--sieg-black) / .85), transparent 35%, hsl(var(--sieg-black) / .18));
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
     --primary: 48 100% 50%;
@@ -259,7 +260,19 @@
 @keyframes dash { to { stroke-dashoffset: -28 } }
 @keyframes floaty { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)) } 50% { transform: translateY(-14px) rotate(var(--r,0deg)) } }
 .floaty { animation: floaty 6s ease-in-out infinite; }
+.germany-hero { min-height: min(94svh, 960px); }
+.germany-hero-overlay { background: var(--hero-overlay); }
+.germany-hero-image { opacity: 0; transform: scale(1); transition: opacity 1.4s ease-in-out, transform 8s linear; }
+.germany-hero-image.is-active { opacity: 1; transform: scale(1.045); }
+.germany-hero-heading { font-size: 36px; letter-spacing: 0; line-height: 1.03; }
+@media (min-width: 375px) { .germany-hero-heading { font-size: 40px; } }
+@media (min-width: 640px) { .germany-hero-heading { font-size: 48px; } }
+@media (min-width: 768px) { .germany-hero-heading { font-size: 72px; } }
+@media (min-width: 1280px) { .germany-hero-heading { font-size: 88px; } }
+@media (max-width: 767px) { .germany-hero { min-height: 94svh; } }
 @media (prefers-reduced-motion: reduce) {
+  .germany-hero-image, .germany-hero-image.is-active { transition: none; transform: none; }
+  .germany-hero { scroll-behavior: auto; }
   .marquee-track, .flow-line, .floaty { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }

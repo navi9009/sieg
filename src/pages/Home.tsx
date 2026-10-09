@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { Check, X, ArrowRight, ArrowDown, Menu } from "lucide-react";
 import { SiegLogo } from "@/components/SiegLogo";
 import { Marquee } from "@/components/Marquee";
+import { GermanyHero } from "@/components/GermanyHero";
+import { germanyLandmarks } from "@/components/germany-landmarks";
+import { UniversityCarousel } from "@/components/UniversityCarousel";
+import { Button } from "@/components/ui/button";
 import { useReveal } from "@/hooks/useReveal";
 
 const universities = ["RWTH Aachen University", "Technical University of Munich", "TU Berlin", "TU Dresden", "TU Darmstadt", "TU Braunschweig", "Heidelberg University", "University of Bonn", "KIT", "University of Stuttgart", "University of Hamburg", "University of Cologne", "University of Freiburg", "University of Mannheim", "University of Göttingen"];
@@ -122,34 +126,27 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden pt-24">
-        <div className="absolute -right-32 top-16 h-[78vh] w-[40vw] bg-sieg-red" />
-        <div className="absolute bottom-0 right-[28vw] h-40 w-40 bg-sieg-yellow md:h-64 md:w-64" />
-        <div className="absolute left-0 top-[58%] h-3 w-1/3 bg-sieg-yellow" />
-        <div className="relative mx-auto grid max-w-[1600px] gap-10 px-5 pb-16 md:px-10 lg:grid-cols-[1.4fr_1fr]">
+      <GermanyHero landmarks={germanyLandmarks}>
+        <div className="relative max-w-3xl">
           <div>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sieg-white/60">
               <Label>AI-powered applicant journey</Label><Label className="text-sieg-yellow">Germany / 2026</Label>
             </div>
-            <h1 className="font-display mt-8 text-[15vw] uppercase lg:text-[7vw]">
+            <h1 className="font-display germany-hero-heading mt-8 uppercase">
               <span className="block">Your path</span>
               <span className="block">to <span className="text-sieg-yellow">Germany.</span></span>
               <span className="mt-4 block text-sieg-white">Made</span>
               <span className="block text-sieg-red">intelligent.</span>
             </h1>
-            <p className="mt-10 max-w-md text-lg text-sieg-white/80">AI-powered document intelligence for your journey to Germany.</p>
+            <p className="mt-6 max-w-md text-base text-sieg-white/90 md:text-lg">AI-powered document intelligence for your journey to Germany.</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <CTA>Start your journey</CTA>
-              <a href="#how" className="font-mono-label inline-flex items-center gap-3 border border-sieg-white px-6 py-4 text-xs font-bold hover:bg-sieg-white hover:text-sieg-black">Explore how it works →</a>
+              <Button asChild className="font-mono-label h-auto rounded-none bg-sieg-yellow px-6 py-4 text-xs font-bold text-sieg-black hover:bg-sieg-white"><Link to="/dashboard">Start your journey <ArrowRight /></Link></Button>
+              <Button asChild variant="ghost" className="font-mono-label h-auto rounded-none border border-sieg-white/50 px-6 py-4 text-xs font-bold text-sieg-white hover:bg-sieg-white hover:text-sieg-black"><a href="#how">Explore how it works <ArrowRight /></a></Button>
             </div>
-            <div className="mt-14 flex gap-6 text-sieg-white/50"><Label>Document intelligence</Label><Label>Qualification check</Label></div>
-          </div>
-          <div className="relative flex items-center lg:pt-20">
-            <ProgressPanel className="w-full max-w-md rotate-[-2deg] lg:ml-auto" />
+            <div className="mt-8 flex flex-wrap gap-6 text-sieg-white/70"><Label>Document intelligence</Label><Label>Qualification check</Label></div>
           </div>
         </div>
-        <a href="#problem" className="relative mx-auto flex max-w-[1600px] items-center gap-2 px-5 pb-8 text-sieg-white/60 md:px-10"><Label>Scroll to explore</Label><ArrowDown className="h-4 w-4 animate-bounce" /></a>
-      </section>
+      </GermanyHero>
 
       {/* PROBLEM */}
       <section id="problem" className="relative overflow-hidden bg-sieg-red px-5 py-28 text-sieg-black md:px-10">
@@ -294,7 +291,7 @@ export default function Home() {
           <h2 className="font-display reveal text-6xl uppercase md:text-8xl">Where<br />could you <span className="text-sieg-yellow">go?</span></h2>
           <Label className="mt-8 block text-sieg-red">Universities to explore</Label>
         </div>
-        <Marquee items={universities} speed={60} className="mt-6 border-y border-sieg-white/10 bg-sieg-ink py-6" />
+        <UniversityCarousel universities={universities} />
         <div className="mt-16 px-5 md:px-10">
           <Label className="block text-sieg-yellow">Companies to explore</Label>
           <p className="mt-3 max-w-xl text-sieg-white/70">Discover opportunities across Germany's technology, engineering and business ecosystem.</p>

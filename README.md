@@ -6,7 +6,7 @@ Users can track their qualifications, understand their next steps, and get guida
 
 https://sieg.vercel.app
 
-## Built With
+## Built using:
 
 - React
 - TypeScript
